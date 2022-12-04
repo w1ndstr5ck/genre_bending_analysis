@@ -19,10 +19,10 @@ ratings_df <- ratings_df[c(2,3)]
 head(ratings_df)
 
 #Group by movie and summarise the average rating of each movie.
+library(dplyr)
 ratings_df <- ratings_df %>% group_by(movieId) %>% summarise(rating = mean(rating))
 
 #using dplyr's join function join the ratings_df to the movies_df so ratings are attached to the proper movie
-library(dplyr)
 movies_df <- movies_df %>% left_join(ratings_df, by = c("movieId" = "movieId"))
 head(movies_df)
 
@@ -33,4 +33,4 @@ movies_df <- movies_df %>% rowwise() %>% mutate(genres.count = length(genres))
 movies_df <- movies_df[4:5]
 head(movies_df)
 
-library(car)
+
