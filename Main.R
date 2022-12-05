@@ -8,7 +8,7 @@ head(movies_df)
 
 detach("package:jsonlite", unload = TRUE)
 
-#Read in ratings.csv
+#Read in ratings.csv (it will load it is just a very big file)
 ratings_df <- read.csv(paste(working_dir, "ratings.csv", sep = "/"))
 
 #convert movieId to char since it is a key not a value.
@@ -38,7 +38,6 @@ scatterplot(anaysis_df$genres.count, anaysis_df$rating.count)
 model_linear <- lm(data = anaysis_df, formula = genres.count ~ rating.count)
 model_poly_2 <- lm(data = anaysis_df, formula = genres.count ~ poly(rating.count, 2))
 model_poly_3 <- lm(data = anaysis_df, formula = genres.count ~ poly(rating.count, 3))
-names(r.squared) <- c(1:3)
 r.squared <- c("model_linear", "model_poly_2", "model_poly_3")
 r.squared["model_linear"] <- summary(model_linear)$r.squared
 r.squared["model_poly_2"] <- summary(model_poly_2)$r.squared
